@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 // Route handling
-app.get("/", (req, res) => res.send("Home Page"));
+app.get("/api/home", (req, res) => res.send("Home Page"));
 app.use("/api/users", userRoute);
 app.use("/api/spots", spotRoute);
 
