@@ -4,6 +4,7 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 const PORT = process.env.PORT;
+const pool = require('./config/db.js')
 // Import routes
 const userRoute = require("./routes/userRoute.js");
 const spotRoute = require("./routes/spotRoute.js");
@@ -30,6 +31,7 @@ app.use((err, req, res, next) => {
 });
 
 // Server initialization
+console.log("db was connected :",pool.pool.config.connectionConfig.user);
 app.listen(PORT, () => {
   console.log(`Server is listning on ${PORT}`);
 });
