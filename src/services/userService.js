@@ -2,7 +2,6 @@ const pool = require("../config/db.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-
 // Function to create a new user with hashed password
 exports.createUser = async ({ id, username, email, password }) => {
   await pool.query("INSERT INTO `users` (id,username,email,password) VALUES (?,?,?,?)", [

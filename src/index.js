@@ -1,8 +1,9 @@
 const express = require("express");
-const { PORT } = require("./config/serverConfig.js");
 const cors = require("cors");
 const app = express();
-
+const dotenv = require('dotenv');
+dotenv.config();
+const PORT = process.env.PORT;
 // Import routes
 const userRoute = require("./routes/userRoute.js");
 const spotRoute = require("./routes/spotRoute.js");

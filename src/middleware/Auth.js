@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 // Middleware to hash the user's password before saving it
 exports.hashPassword = async (req, res, next) => {
-    req.body.password = await bcrypt.hash(req.body.password, 10);
+    req.body.password = await bcrypt.hash(req.body.password, 8);
     next();
 }
 
