@@ -6,6 +6,7 @@ const {
   createToken,
 } = require("../services/userService.js");
 
+
 exports.createUser = async (req, res) => {
   const data = req.body;
   await createUser(data);

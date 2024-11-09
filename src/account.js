@@ -1,6 +1,8 @@
 // config/nodemailerConfig.js
 const { createTransport } = require("nodemailer");
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Create and export the transporter
 const transporter = createTransport({

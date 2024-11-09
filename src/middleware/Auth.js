@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const { v4: uuidV4 } = require("uuid");
 const {verifyEmailSent}  = require('../account');
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 
 
 // Middleware to hash the user's password before saving it
