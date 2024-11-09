@@ -1,9 +1,9 @@
 const { createSpot, showSpots, updateSpots, deleteSpots } = require("../services/spotService");
-const { v4: uuidV4 } = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 
 // Create a new parking spot
 exports.createSpot = async (req, res) => {
-  const id = uuidV4();
+  const id = uuidv4();
   req.body.id = id;
   const spotData = req.body;
 

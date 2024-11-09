@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { v4: uuidV4 } = require("uuid");
+const { v4: uuidv4 } = require('uuid');
 const {verifyEmailSent}  = require('../account');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
@@ -14,7 +14,7 @@ exports.hashPassword = async (req, res, next) => {
 
 // Middleware to send a verification email to the user
 exports.sendVerificationEmail = async (req, res, next) => {
-    const id = uuidV4();
+    const id = uuidv4();
     const {username, email} = req.body;
 
     req.body.id = id;  // Attach unique id to request body

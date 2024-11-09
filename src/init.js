@@ -1,6 +1,6 @@
 const pool = require("./config/db.js");
-const { v4: uuidV4 } = require("uuid");
-const id = uuidV4();
+const { v4: uuidv4 } = require("uuid");
+const id = uuidv4();
 
 const parkingSpots = [
   [
