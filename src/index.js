@@ -6,7 +6,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 
 // Import routes
-// const userRoute = require("./routes/userRoute.js");
+const userRoute = require("./routes/userRoute.js");
 // const spotRoute = require("./routes/spotRoute.js");
 
 // Middleware setup
@@ -15,7 +15,7 @@ app.use(cors());
 
 // Route handling
 app.get("/", (req, res) => res.send("Home Page"));
-// app.use("/api/users", userRoute);
+app.use("/api/users", userRoute);
 // app.use("/api/spots", spotRoute);
 
 
