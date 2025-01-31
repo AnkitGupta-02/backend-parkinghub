@@ -1,4 +1,3 @@
-const pool = require("./config/db.js");
 const { v4: uuidv4 } = require("uuid");
 const id = uuidv4();
 
