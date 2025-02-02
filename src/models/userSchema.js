@@ -1,6 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const { Unauthorized, NotFound } = require("http-errors");
+const { Unauthorized } = require("http-errors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 

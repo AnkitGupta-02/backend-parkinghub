@@ -15,7 +15,7 @@ const transporter = createTransport({
 // Function to send verification email
 const verifyEmailSent = async (user) => {
   const token = user.generateToken("1h");
-  const verificationUrl = `${process.env.BASE_URL}/api/users/verify-email?token=${token}`;
+  const verificationUrl = `${process.env.FRONTEND_URL}/api/users/verify-email?token=${token}`;
 
   await transporter.sendMail({
     from: "test1user2024@gmail.com",
