@@ -9,3 +9,8 @@ exports.createUser = async (data) => {
 exports.verifyEmail = async (id) => {
   return await User.findByIdAndUpdate(id, { isVerified: true }, { new: true });
 };
+
+exports.loginUser = async ({email, password}) => {
+ const user = User.findByCredential({email, password});
+ return user;
+}

@@ -46,9 +46,12 @@ userSchema.statics.findByCredential = async function ({ email, password }) {
 };
 
 userSchema.methods.generateToken = function (life = "") {
-  return jwt.sign({ id: this._id.toString() }, process.env.JWT_KEY, {
-    expiresIn: life,
-  });
+  const options = {};
+
+  if (life) {
+    options.expiresIn = life;
+  }
+  return jwt.sign({ id: this._id.toString() }, process.env.JWT_KEY, options);
 };
 
 const User = mongoose.model("User", userSchema);

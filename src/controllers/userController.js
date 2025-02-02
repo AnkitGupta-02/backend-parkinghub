@@ -1,5 +1,9 @@
 const { verifyEmailSent } = require("../config/nodemailerConfig");
-const { createUser, verifyEmail} = require("../services/userService");
+const {
+  createUser,
+  verifyEmail,
+  loginUser,
+} = require("../services/userService");
 
 exports.createUser = async (req, res) => {
   const userdata = req.body;
@@ -10,14 +14,27 @@ exports.createUser = async (req, res) => {
   if (!user) {
     return res.status(400);
   } else {
-  await verifyEmailSent(user);
+    await verifyEmailSent(user);
   }
   res.status(201).send("created sucessfully");
 };
 
 exports.verifyEmail = async (req, res) => {
-   const result = await verifyEmail(req.userId);
-   if(result){
+  const result = await verifyEmail(req.userId);
+  if (result) {
     res.status(200).send("Email verified sucessfully");
-   }
+  }
+};
+
+exports.loginUser = async (req, res) => {
+  const loginCredential = req.body;
+  const user = await loginUser(loginCredential);
+  const token = user.generateToken();
+
+  res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+  });
+  res.status(204).send();
 };

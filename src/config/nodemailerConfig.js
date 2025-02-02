@@ -1,6 +1,5 @@
 require("dotenv").config();
 const { createTransport } = require("nodemailer");
-const jwt = require("jsonwebtoken");
 
 // Create and export the transporter
 const transporter = createTransport({
