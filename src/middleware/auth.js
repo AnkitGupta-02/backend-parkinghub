@@ -4,17 +4,16 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models/userSchema");
 
 async function auth(req, res, next) {
-  const token = req.header("Cookie")?.replace("token=", "");
+  const token = req.cookies.token;
   if (!token) throw Unauthorized();
 
-  const { id } = jwt.verify(token, process.env.JWT_KEY);
+  const decoded = jwt.verify(token, process.env.JWT_KEY);
 
-  if (!id) throw Unauthorized();
+  if (!decoded.id) throw Unauthorized();
 
-  const user = User.findById(id);
+  const user = await User.findById({_id:decoded.id});
 
   if (!user) throw Unauthorized();
-
   req.user = user;
   next();
 }

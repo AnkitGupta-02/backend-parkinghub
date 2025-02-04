@@ -50,6 +50,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", userRoute);
 
+app.use(error);
+
 app.listen(process.env.PORT, () => console.log("listning at 8080"));
 
 module.exports = app;
