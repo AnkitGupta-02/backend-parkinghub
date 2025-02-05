@@ -28,6 +28,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    role: {
+      type: String,
+      enum: ["admin", "user", "spot_owner"],
+      default: "user",
+    },
     isVerified: {
       type: Boolean,
       default: false,
@@ -51,7 +56,7 @@ userSchema.methods.generateToken = function (life = "") {
   if (life) {
     options.expiresIn = life;
   }
-  return jwt.sign({ id: this._id.toString() }, process.env.JWT_KEY, options);
+  return jwt.sign({ id: this._id.toString(), role: this.role }, process.env.JWT_KEY, options);
 };
 
 const User = mongoose.model("User", userSchema);
