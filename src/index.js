@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 require("./database/db.js");
 require("winston-mongodb");
 const userRoute = require("./routes/userRoute.js");
+const spotRoute = require("./routes/spotRoute.js");
 const error = require("./middleware/error.js");
 
 const app = express();
@@ -49,6 +50,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", userRoute);
+app.use("/api/rentout/spots", spotRoute);
 
 app.use(error);
 

@@ -1,44 +1,66 @@
 const mongoose = require("mongoose");
+const { User } = require("./userSchema");
 
-const spotSchema = new mongoose.Schema(
+const ParkingSpotSchema = new mongoose.Schema(
   {
-    name: {
+    spotName: {
       type: String,
-      required: false,
-    },
-    lat: {
-      type: Number,
-      required: true,
-    },
-    lng: {
-      type: Number,
       required: true,
     },
     address: {
       type: String,
       required: true,
+      trim: true,
+    },
+    location: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        default: "Point",
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
     },
     ownerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: false,
+      required: true,
     },
     pricePerHour: {
       type: Number,
+      required: true,
       default: 0,
     },
     capacity: {
       type: Number,
+      required: true,
       default: 1,
     },
     isAvailable: {
       type: Boolean,
       default: true,
     },
+    isApprovedStatus: {
+      type: String,
+      enum: ["Pending", "Approved", "Rejected"],
+      default: "Pending",
+    },
+    spotType: {
+      type: String,
+      enum: ["Driveway", "Garage", "Parking Lot", "Street Parking"],
+      required: true,
+    },
+    images: {
+      type: [String],
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-const Spot = mongoose.model("Spot", spotSchema);
+ParkingSpotSchema.index({ coordinates: "2dsphere" });
 
+const Spot = mongoose.model("Spot", ParkingSpotSchema);
 module.exports = { Spot };
