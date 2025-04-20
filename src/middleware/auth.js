@@ -1,4 +1,3 @@
-require("dotenv").config();
 const { Unauthorized } = require("http-errors");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/userSchema");

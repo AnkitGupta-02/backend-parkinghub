@@ -13,7 +13,7 @@
 //       });
   
 //       // Insert the data
-//       await Spot.insertMany(Spots);
+//       await Spot.insertMany(Spots,{ timestamps: true });
   
 //       console.log('Data seeded successfully!');
 //     } catch (error) {
